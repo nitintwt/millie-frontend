@@ -1,28 +1,44 @@
 import { useEffect, useState} from 'react'
 import axios from 'axios'
+import { useCookies } from 'react-cookie';
 
 const Header = () => {
+  const [cookies , setCookies]= useCookies()
 
   useEffect(()=>{
     const query = new URLSearchParams(location.search);
     const code = query.get('code');
-    const createToken = async ()=>{
+    const createGoogleToken = async ()=>{
       try {
-        const createGoogleTokens = await axios.post(`/api/v1/google/googleLogin?code=${code}`)
-        query.delete("code")
-        console.log("tokens saved successfully in db")
+        const token = await axios.post(`/api/v1/auth/googleLogin?code=${code}`)
+        console.log("token",token.data.data.userId)
+        setCookies("userData", {userId:token.data.data.userId})
       } catch (error:any) {
-        console.log("Something went wrong fetching user data")
+        console.log("Something went wrong creating google token")
       }
     }
-    if (code) createToken()
+    if (code && !cookies?.userData?.userId) createGoogleToken()
   },[])
 
+  useEffect(()=>{
+    const query = new URLSearchParams(location.search);
+    const code = query.get('code');
+    const createNotionToken = async ()=>{
+      try {
+        const createToken = await axios.post(`/api/v1/auth/notionLogin?code=${code}`, {userId:cookies.userData.userId})
+        query.delete("code")
+        console.log("google tokens saved successfully in db")
+      } catch (error:any) {
+        console.log("Something went wrong creating google token")
+      }
+    }
+    if (code && cookies?.userData?.userId) createNotionToken()
+  },[])
 
   return (
     <header className="text-center space-y-4">
       <div className="inline-flex items-center bg-purple-100 text-purple-600 px-4 py-1 rounded-full text-sm font-medium">
-        Millie Alpha
+        Millie JI
       </div>
       <h1 className="text-4xl font-bold text-gray-800">
         Hey there
@@ -30,12 +46,7 @@ const Header = () => {
       <p className="text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent font-semibold">
         Got work? Let's jam!
       </p>
-      <a
-        href={`/api/v1/google/googleOAuth`}
-        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-        Connect Gmail
-      </a>
+      <a href="https://api.notion.com/v1/oauth/authorize?client_id=1e6d872b-594c-8045-bcfd-003716dbbc79&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A5173">Connect Notion</a>
     </header>
   );
 };

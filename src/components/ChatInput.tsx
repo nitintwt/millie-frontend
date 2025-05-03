@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { SendHorizontal } from 'lucide-react';
 import { useChat } from '../context/ChatContext';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const ChatInput = () => {
   const [input, setInput] = useState('');
   const { addMessage, setThinking } = useChat();
+  const [cookies] = useCookies()
+  console.log("chat", cookies?.userData?.userId)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,7 +16,7 @@ const ChatInput = () => {
       addMessage(input.trim(), 'user');
       setInput('');
       setThinking(true);
-      const response = await axios.post("/api/v1/agent/chat" , {input:input , userId:"123"})
+      const response = await axios.post("/api/v1/agent/chat" , {input:input , userId:cookies?.userData?.userId})
       console.log(response.data.message)
       setThinking(false);
       addMessage(response.data.message, 'ai');

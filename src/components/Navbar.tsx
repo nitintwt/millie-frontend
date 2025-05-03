@@ -9,13 +9,10 @@ const Navbar: React.FC = () => {
           <Zap size={24} className="text-purple-600" />
           <span className="font-bold text-gray-800">Millie</span>
         </div>
-        <div className="flex items-center gap-4">
-          <button className="px-4 py-2 text-purple-600 hover:text-purple-700 font-medium">
+        <div className="flex items-center gap-">
+          <a className="px-4 py-2 text-purple-600 hover:text-purple-700 font-medium" href={`/api/v1/auth/googleOAuth`}>
             Sign in
-          </button>
-          <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-medium transition-colors">
-            Sign up
-          </button>
+          </a>
         </div>
       </div>
     </nav>
