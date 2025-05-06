@@ -13,13 +13,18 @@ const ChatInput = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim()) {
-      addMessage(input.trim(), 'user');
-      setInput('');
-      setThinking(true);
-      const response = await axios.post("/api/v1/agent/chat" , {input:input , userId:cookies?.userData?.userId})
-      console.log(response.data.message)
-      setThinking(false);
-      addMessage(response.data.message, 'ai');
+      try {
+        addMessage(input.trim(), 'user');
+        setInput('');
+        setThinking(true);
+        const response = await axios.post("/api/v1/agent/chat" , {input:input , userId:cookies?.userData?.userId})
+        console.log(response.data.message)
+        setThinking(false);
+        addMessage(response.data.message, 'ai');
+      } catch (error) {
+        setThinking(false)
+        addMessage("Something went wrong.Try again after some time.", "ai")
+      }
   };}
 
   return (
