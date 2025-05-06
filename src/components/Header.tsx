@@ -46,7 +46,6 @@ const Header = () => {
       <p className="text-3xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent font-semibold">
         Got work? Let's jam!
       </p>
-      <a href="https://api.notion.com/v1/oauth/authorize?client_id=1e6d872b-594c-8045-bcfd-003716dbbc79&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A5173">Connect Notion</a>
     </header>
   );
 };
