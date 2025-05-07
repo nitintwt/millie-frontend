@@ -10,7 +10,7 @@ const Header = () => {
     const code = query.get('code');
     const createGoogleToken = async ()=>{
       try {
-        const token = await axios.post(`/api/v1/auth/googleLogin?code=${code}`)
+        const token = await axios.post(`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleLogin?code=${code}`)
         console.log("token",token.data.data.userId)
         setCookies("userData", {userId:token.data.data.userId})
       } catch (error:any) {
@@ -20,20 +20,7 @@ const Header = () => {
     if (code && !cookies?.userData?.userId) createGoogleToken()
   },[])
 
-  useEffect(()=>{
-    const query = new URLSearchParams(location.search);
-    const code = query.get('code');
-    const createNotionToken = async ()=>{
-      try {
-        const createToken = await axios.post(`/api/v1/auth/notionLogin?code=${code}`, {userId:cookies.userData.userId})
-        query.delete("code")
-        console.log("google tokens saved successfully in db")
-      } catch (error:any) {
-        console.log("Something went wrong creating google token")
-      }
-    }
-    if (code && cookies?.userData?.userId) createNotionToken()
-  },[])
+
 
   return (
     <header className="text-center space-y-4">

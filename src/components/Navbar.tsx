@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
           <span className="font-bold text-gray-800">Millie</span>
         </div>
         <div className="flex items-center gap-">
-          <a className="px-4 py-2 text-purple-600 hover:text-purple-700 font-medium" href="https://api.notion.com/v1/oauth/authorize?client_id=1e6d872b-594c-8045-bcfd-003716dbbc79&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A5173">
+          <a className="px-4 py-2 text-purple-600 hover:text-purple-700 font-medium" href="https://api.notion.com/v1/oauth/authorize?client_id=1e6d872b-594c-8045-bcfd-003716dbbc79&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fmillie-roan.vercel.app%2Fchat">
             Connect to notion
           </a>
         </div>

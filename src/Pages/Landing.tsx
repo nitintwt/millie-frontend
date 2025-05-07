@@ -24,7 +24,7 @@ function Landing() {
             <span className="font-bold text-gray-900 text-xl">Millie</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link to={`/api/v1/auth/googleOAuth`} className="ml-4 px-6 py-2.5 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95">
+            <Link to={`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleOAuth`} className="ml-4 px-6 py-2.5 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95">
               Get Started
             </Link>
           </div>
@@ -55,7 +55,7 @@ function Landing() {
 
             <div className="flex justify-center gap-6 mb-20">
               <Link
-                to={`/api/v1/auth/googleOAuth`}
+                to={`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleOAuth`}
                 className="px-8 py-4 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95 flex items-center gap-2"
               >
                 Start Free Trial
@@ -233,7 +233,7 @@ function Landing() {
                     ))}
                   </ul>
                   <Link
-                    to={`/api/v1/auth/googleOAuth`}
+                    to={`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleOAuth`}
                     className={`block text-center py-3 rounded-xl font-medium transition-all ${
                       plan.popular
                         ? 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200'
@@ -258,7 +258,7 @@ function Landing() {
               Join thousands of professionals who are already experiencing the future of productivity with Millie.
             </p>
             <Link
-              to={`/api/v1/auth/googleOAuth`}
+              to={`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleOAuth`}
               className="inline-flex items-center gap-2 px-8 py-4 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95"
             >
               Get Started Now

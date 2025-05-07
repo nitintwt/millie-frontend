@@ -17,7 +17,7 @@ const ChatInput = () => {
         addMessage(input.trim(), 'user');
         setInput('');
         setThinking(true);
-        const response = await axios.post("/api/v1/agent/chat" , {input:input , userId:cookies?.userData?.userId})
+        const response = await axios.post(`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/agent/chat` , {input:input , userId:cookies?.userData?.userId})
         console.log(response.data.message)
         setThinking(false);
         addMessage(response.data.message, 'ai');
