@@ -15,14 +15,14 @@ function Chat() {
       if(!cookies?.userData?.userId){
         navigate("/")
       }
-    },[])
+    },[cookies])
 
     useEffect(()=>{
       const query = new URLSearchParams(location.search);
       const code = query.get('code');
       const createNotionToken = async ()=>{
         try {
-          const createToken = await axios.post(`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/notionLogin?code=${code}`, {userId:cookies.userData.userId})
+          const createToken = await axios.post(`/api/v1/auth/notionLogin?code=${code}`, {userId:cookies.userData.userId})
           query.delete("code")
           console.log("NOTION tokens saved successfully in db")
         } catch (error:any) {

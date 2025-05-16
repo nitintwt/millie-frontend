@@ -10,7 +10,7 @@ function Landing() {
     if(cookies?.userData?.userId){
       navigate("/chat")
     }
-  },[])
+  },[cookies])
   return (
     <div className="min-h-screen bg-purple-50/30">
       {/* Floating Navbar */}
@@ -24,7 +24,7 @@ function Landing() {
             <span className="font-bold text-gray-900 text-xl">Millie</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link to={`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleOAuth`} className="ml-4 px-6 py-2.5 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95">
+            <Link to={`/api/v1/auth/googleOAuth`} className="ml-4 px-6 py-2.5 bg-purple-600 text-white rounded-full font-medium transition-all hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 active:scale-95">
               Get Started
             </Link>
           </div>

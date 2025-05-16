@@ -5,6 +5,11 @@ interface Message {
   text: string;
   sender: 'user' | 'ai';
   timestamp: Date;
+  type?: 'normal' | 'pdf';
+  pdfContext?: {
+    pages?: number[];
+    fileName?: string;
+  };
 }
 
 interface ChatContextType {
@@ -20,12 +25,14 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [thinking, setThinking] = useState(false);
 
-  const addMessage = (text: string, sender: 'user' | 'ai') => {
+  const addMessage = (text: string, sender: 'user' | 'ai', type: 'normal' | 'pdf' = 'normal', pdfContext?: { pages?: number[]; fileName?: string; }) => {
     const newMessage: Message = {
       id: Date.now().toString(),
       text,
       sender,
       timestamp: new Date(),
+      type,
+      pdfContext
     };
     setMessages((prev) => [...prev, newMessage]);
   };

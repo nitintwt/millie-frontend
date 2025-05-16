@@ -10,7 +10,7 @@ const Header = () => {
     const code = query.get('code');
     const createGoogleToken = async ()=>{
       try {
-        const token = await axios.post(`${import.meta.env.VITE_RENDER_MILLIE}/api/v1/auth/googleLogin?code=${code}`)
+        const token = await axios.post(`/api/v1/auth/googleLogin?code=${code}`)
         console.log("token",token.data.data.userId)
         setCookies("userData", {userId:token.data.data.userId})
       } catch (error:any) {
